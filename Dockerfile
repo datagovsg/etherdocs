@@ -1,9 +1,14 @@
-FROM node:10.15.0
+FROM node:10.15.0-alpine
 
-RUN git clone git://github.com/ether/etherpad-lite.git
+COPY bin usr/bin/
+COPY src usr/src/
+COPY var usr/var/
+COPY . usr/
 
-WORKDIR /etherpad-lite
+RUN chmod -R g+rwx /usr/
+
+WORKDIR /usr
 
 EXPOSE 9001
 
-CMD ["bin/run.sh"]
+CMD ["/usr/bin/run.sh"]
