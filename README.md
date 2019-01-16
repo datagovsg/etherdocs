@@ -180,3 +180,8 @@ Then edit settings.json to your liking and rebuild the container, running:
 docker build -t <YOUR_USERNAME>/etherpad .
 
 This image could also be used as a base for Docker Etherpad images integrated with MySQL, etc.
+
+For now, to get this running:
+
+`docker build -t ether . && docker run --user="12345678:0" -p 9001:9001 ether`
+and then go to http://0.0.0.0:9001

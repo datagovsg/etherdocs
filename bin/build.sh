@@ -8,9 +8,5 @@ if [ -d "../bin" ]; then
   cd "../"
 fi
 
-#Move to the node folder and start
-echo "Started Etherpad..."
-
-SCRIPTPATH=`pwd -P`
-exec node "$SCRIPTPATH/node_modules/ep_etherpad-lite/node/server.js" $*
-
+#Prepare the environment
+bin/installDeps.sh $* || exit 1

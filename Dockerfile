@@ -11,6 +11,8 @@ RUN chmod -R g+rwx /.npm
 
 WORKDIR /usr
 
+RUN /usr/bin/build.sh
+
 EXPOSE 9001
 
 CMD ["/usr/bin/run.sh"]
