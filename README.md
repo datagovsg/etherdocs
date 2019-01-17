@@ -1,74 +1,41 @@
-# A really-real time collaborative word processor for the web
+# Google Docs for the intranet!
 
-![Demo Etherpad Animated Jif](https://i.imgur.com/zYrGkg3.gif "Etherpad in action on PrimaryPad")
+![Demo EtherDocs Animated Jif](https://i.imgur.com/zYrGkg3.gif "EtherDocs in action")
 
-# About
+# Things you should know, from Nikhil:
 
-Etherpad is a really-real time collaborative editor scalable to thousands of simultanious real time users. Unlike all other collaborative tools Etherpad provides full fidelity data export and portability making it fully GDPR compliant.
+- etherpad-docker does not work on Nectar because it uses supervisor which is UNIX process control system. That's why we've rolled our own Dockerfile
+- On Nectar, at build time, you are root user, but at runtime, you are a random user in the root group. This has important implications. Stuff like making directories or creating new files or even writing to files may not be possible any longer. For that reason, make sure to provide appropriate permissions, frontloading all the build steps, and preemptively creating the folders that might be needed
+- Dockerfile's `chmod -R g+rwx /usr` is a very intensive operation. It has to modify every damn thing in th folder, and we have specified for it to happen recursively. If you have a lot of stuff in the directory (perhaps because, like myself, you have run the code on your machine instead of in a docker container, which creates a whole bunch of `node_modules` that bloats up your machine from 15MB to 80MB), it'll practically hang. Yes, you can create a .dockerignore file so that the Docker context is reduced, but I cannot be bothered. Run locally using docker because that's what happens in staging and prod.
 
-**[Try it out](http://beta.etherpad.org)**
+## Getting started
 
-# Installation
+`docker build -t ether . && docker run --user="12345678:0" -p 9001:9001 ether`
 
-## Requirements
+and then go to http://0.0.0.0:9001
 
-- `nodejs` >= **6.9.0** (preferred: `nodejs` >= **8.9**)
+I won't give instructions on how to start it on your machine because you're going to run into the problem stated above. If you are smart enough to solve that problem then you're smart enough to figure out how to run it on your local machine yourself.
 
-## Uber-Quick Ubuntu
+To demo the product on the internet, use their implementation http://beta.etherpad.org. To demo the product on SOE, go to https://etherdocs.app.gov.sg. Don't forget the https! Especially when you're telling friends about it!
 
-```
-curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
-sudo apt-get install -y nodejs
-git clone https://github.com/ether/etherpad-lite.git && cd etherpad-lite && bin/run.sh
-```
+# Things you should know, from the original repository
 
-## GNU/Linux and other UNIX-like systems
+Understand [git](https://training.github.com/) and watch this [video on getting started with Etherpad Development](https://youtu.be/67-Q26YH97E).
 
-You'll need git and [node.js](https://nodejs.org) installed (minimum required Node version: **6.9.0**, preferred: >= **8.9**).
+You can debug Etherpad using `bin/debugRun.sh`.
 
-**As any user (we recommend creating a separate user called etherpad):**
+If you want to find out how Etherpad's `Easysync` works (the library that makes it really realtime), start with this [PDF](https://github.com/ether/etherpad-lite/raw/master/doc/easysync/easysync-full-description.pdf) (complex, but worth reading).
 
-1. Move to a folder where you want to install Etherpad. Clone the git repository: `git clone git://github.com/ether/etherpad-lite.git`
-2. Change into the new directory containing the cloned source code: `cd etherpad-lite`
-3. run `bin/run.sh` and open <http://127.0.0.1:9001> in your browser.
+## HTTP API
 
-To update to the latest released version, execute `git pull origin`. The next start with `bin/run.sh` will update the dependencies.
+Etherpad is designed to be easily embeddable and provides a [HTTP API](https://github.com/ether/etherpad-lite/wiki/HTTP-API)
+that allows your web application to manage pads, users and groups. It is recommended to use the [available client implementations](https://github.com/ether/etherpad-lite/wiki/HTTP-API-client-libraries) in order to interact with this API.
 
-[Next steps](#next-steps).
+## Plugins and themes
 
-## Windows
+Etherpad is very customizable through plugins. Instructions for installing themes and plugins can be found in [the plugin wiki article](https://github.com/ether/etherpad-lite/wiki/Available-Plugins).
 
-### Prebuilt Windows package
-
-This package works out of the box on any windows machine, but it's not very useful for developing purposes...
-
-1. [Download the latest Windows package](http://etherpad.org/#download)
-2. Extract the folder
-
-Now, run `start.bat` and open <http://localhost:9001> in your browser. You like it? [Next steps](#next-steps).
-
-### Manually install on Windows
-
-You'll need [node.js](https://nodejs.org) and (optionally, though recommended) git.
-
-1. Grab the source, either
-
-- download <https://github.com/ether/etherpad-lite/zipball/master>
-- or `git clone https://github.com/ether/etherpad-lite.git` (for this you need git, obviously)
-
-2. start `bin\installOnWindows.bat`
-
-Now, run `start.bat` and open <http://localhost:9001> in your browser.
-
-Update to the latest version with `git pull origin`, then run `bin\installOnWindows.bat`, again.
-
-If cloning to a subdirectory within another project, you may need to do the following:
-
-1. Start the server manually (e.g. `node/node_modules/ep_etherpad-lite/node/server.js`)
-2. Edit the db `filename` in `settings.json` to the relative directory with the file (e.g. `application/lib/etherpad-lite/var/dirty.db`)
-3. Add auto-generated files to the main project `.gitignore`
-
-# Next Steps
+Etherpad offers a plugin framework, allowing you to easily add your own features. By default your Etherpad is extremely light-weight and it's up to you to customize your experience. Once you have Etherpad installed you should visit the plugin page and take control.
 
 ## Tweak the settings
 
@@ -77,7 +44,11 @@ If you need to handle multiple settings files, you can pass the path to a settin
 Similarly, `--credentials` can be used to give a settings override file, `--apikey` to give a different APIKEY.txt file and `--sessionkey` to give a non-default SESSIONKEY.txt.
 Once you have access to your /admin section settings can be modified through the web browser.
 
-You should use a dedicated database such as "mysql", if you are planning on using etherpad-in a production environment, since the "dirtyDB" database driver is only for testing and/or development purposes.
+## Helpful resources
+
+The [wiki](https://github.com/ether/etherpad-lite/wiki) is your one-stop resource for Tutorials and How-to's.
+
+Documentation can be found in `doc/`.
 
 ## Secure your installation
 
@@ -86,102 +57,6 @@ If you have enabled authentication in `users` section in `settings.json`, it is 
 Please install [ep_hash_auth plugin](https://www.npmjs.com/package/ep_hash_auth) and configure it.
 If you prefer, `ep_hash_auth` also gives you the option of storing the users in a custom directory in the file system, without having to edit `settings.json` and restart Etherpad each time.
 
-## Plugins and themes
-
-Etherpad is very customizable through plugins. Instructions for installing themes and plugins can be found in [the plugin wiki article](https://github.com/ether/etherpad-lite/wiki/Available-Plugins).
-
-## Helpful resources
-
-The [wiki](https://github.com/ether/etherpad-lite/wiki) is your one-stop resource for Tutorials and How-to's.
-
-Documentation can be found in `doc/`.
-
-# Development
-
-## Things you should know
-
-Understand [git](https://training.github.com/) and watch this [video on getting started with Etherpad Development](https://youtu.be/67-Q26YH97E).
-
-If you're new to node.js, start with Ryan Dahl's [Introduction to Node.js](https://youtu.be/jo_B4LTHi3I).
-
-You can debug Etherpad using `bin/debugRun.sh`.
-
-If you want to find out how Etherpad's `Easysync` works (the library that makes it really realtime), start with this [PDF](https://github.com/ether/etherpad-lite/raw/master/doc/easysync/easysync-full-description.pdf) (complex, but worth reading).
-
-## Contributing
-
-Read our [**Developer Guidelines**](https://github.com/ether/etherpad-lite/blob/master/CONTRIBUTING.md)
-
-# Get in touch
-
-[mailinglist](https://groups.google.com/group/etherpad-lite-dev)
-[#etherpad-lite-dev freenode IRC](https://webchat.freenode.net?channels=#etherpad-lite-dev)!
-
-# Languages
-
-Etherpad is written in JavaScript on both the server and client so it's easy for developers to maintain and add new features.
-
-# HTTP API
-
-Etherpad is designed to be easily embeddable and provides a [HTTP API](https://github.com/ether/etherpad-lite/wiki/HTTP-API)
-that allows your web application to manage pads, users and groups. It is recommended to use the [available client implementations](https://github.com/ether/etherpad-lite/wiki/HTTP-API-client-libraries) in order to interact with this API.
-
-# jQuery plugin
-
-There is a [jQuery plugin](https://github.com/ether/etherpad-lite-jquery-plugin) that helps you to embed Pads into your website.
-
-# Plugin Framework
-
-Etherpad offers a plugin framework, allowing you to easily add your own features. By default your Etherpad is extremely light-weight and it's up to you to customize your experience. Once you have Etherpad installed you should visit the plugin page and take control.
-
-# Translations / Localizations (i18n / l10n)
-
-Etherpad comes with translations into all languages thanks to the team at TranslateWiki.
-
-# FAQ
-
-Visit the **[FAQ](https://github.com/ether/etherpad-lite/wiki/FAQ)**.
-
-# Donate!
-
-- [Flattr](https://flattr.com/thing/71378/Etherpad-Foundation)
-- Paypal - Press the donate button on [etherpad.org](http://etherpad.org)
-- [Bitcoin](https://coinbase.com/checkouts/1e572bf8a82e4663499f7f1f66c2d15a)
-
-All donations go to the Etherpad foundation which is part of Software Freedom Conservency
-
 # License
 
 [Apache License v2](http://www.apache.org/licenses/LICENSE-2.0.html)
-
-From etherpad-docker:
-
-This is a Docker image of the latest development version of Etherpad which is nothing more than the basic test setup as described on https://github.com/ether/etherpad-lite. All of these instructions are as a member of the docker group (or root).
-
-To download the image from the Docker index, run:
-
-docker pull etherpad/etherpad
-
-To run Etherpad on port 9001, run:
-
-docker run -d -p 9001:9001 etherpad/etherpad
-
-To run Etherpad on port 80, run:
-
-docker run -d -p 80:9001 etherpad/etherpad
-
-Running with custom settings
-To edit the Etherpad settings.json, it is necessary to clone the git repository:
-
-git clone git://github.com/ether/etherpad-docker.git && cd etherpad-docker
-
-Then edit settings.json to your liking and rebuild the container, running:
-
-docker build -t <YOUR_USERNAME>/etherpad .
-
-This image could also be used as a base for Docker Etherpad images integrated with MySQL, etc.
-
-For now, to get this running:
-
-`docker build -t ether . && docker run --user="12345678:0" -p 9001:9001 ether`
-and then go to http://0.0.0.0:9001
