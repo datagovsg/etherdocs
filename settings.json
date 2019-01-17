@@ -71,7 +71,7 @@
   /*
    * The default text of a pad
    */
-  "defaultPadText": "Welcome to EtherDocs!\nIt's Google Docs for the Intranet. It is a proof of concept rather than a final product so accept our apologies if you find any shortcomings. We'd love to hear how we can improve the product from you. Please send your thoughts to one or all of these folks:\n- Talitha Chin talitha_chin@tech.gov.sg\n- Nikhil Choudhary nikhil_choudhary\n- Ang Yi Xin ang_yi_xin@tech.gov.sg\n",
+  "defaultPadText": "Welcome to EtherDocs!\nIt's Google Docs for the Intranet. It is a proof of concept rather than a final product so accept our apologies if you find any shortcomings. We'd love to hear how we can improve the product from you. Please send your thoughts to one or all of these folks:\n- Ang Yi Xin ang_yi_xin@tech.gov.sg\n- Talitha Chin talitha_chin@tech.gov.sg\n- Nikhil Choudhary nikhil_choudhary@tech.gov.sg\n",
 
   /*
    * Default Pad behavior.
@@ -82,12 +82,12 @@
     "noColors": false,
     "showControls": true,
     "showChat": true,
-    "showLineNumbers": true,
+    "showLineNumbers": false,
     "useMonospaceFont": false,
     "userName": false,
     "userColor": false,
     "rtl": false,
-    "alwaysShowChat": false,
+    "alwaysShowChat": true,
     "chatAndUsers": false,
     "lang": "en-gb"
   },
@@ -190,7 +190,7 @@
    * Allow import of file types other than the supported ones:
    * txt, doc, docx, rtf, odt, html & htm
    */
-  "allowUnknownFileEnds": true,
+  "allowUnknownFileEnds": false,
 
   /*
    * This setting is used if you require authentication of all users.
@@ -207,7 +207,7 @@
   /*
    * When you use NGINX or another proxy/load-balancer set this to true.
    */
-  "trustProxy": false,
+  "trustProxy": true,
 
   /*
    * Privacy: disable IP logging
@@ -220,7 +220,7 @@
    *
    * Set to 0 to disable automatic reconnection.
    */
-  "automaticReconnectionTimeout": 0,
+  "automaticReconnectionTimeout": 5,
 
   /*
    * By default, when caret is moved out of viewport, it scrolls the minimum
@@ -273,20 +273,17 @@
    *          follow the section "secure your installation" in README.md
    */
 
-  /*
   "users": {
     "admin": {
-      // "password" can be replaced with "hash" if you install ep_hash_auth
-      "password": "changeme1",
+      // "password" NEEDS TO BE replaced with "hash" if you install ep_hash_auth
+      "password": "ill-soapsuds-craft-whom",
       "is_admin": true
-    },
-    "user": {
-      // "password" can be replaced with "hash" if you install ep_hash_auth
-      "password": "changeme1",
-      "is_admin": false
     }
+    // "user": {
+    //   "password": "changeme1",
+    //   "is_admin": false
+    // }
   },
-  */
 
   /*
    * Restrict socket.io transport methods
@@ -315,12 +312,12 @@
    * Uncomment to customize.
    */
 
-  /*
   "toolbar": {
     "left": [
-      ["bold", "italic", "underline", "strikethrough"],
-      ["orderedlist", "unorderedlist", "indent", "outdent"],
+      // we're trying to mimic what Google Docs does
       ["undo", "redo"],
+      ["bold", "italic", "underline", "strikethrough"],
+      ["orderedlist", "unorderedlist", "outdent", "indent"],
       ["clearauthorship"]
     ],
     "right": [
@@ -328,11 +325,8 @@
       ["settings", "embed"],
       ["showusers"]
     ],
-    "timeslider": [
-      ["timeslider_export", "timeslider_returnToPad"]
-    ]
+    "timeslider": [["timeslider_export", "timeslider_returnToPad"]]
   },
-  */
 
   /*
    * The log level we are using.
