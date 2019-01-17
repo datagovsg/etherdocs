@@ -1,0 +1,30 @@
+version: "3"
+services:
+  etherdocs:
+    build:
+      context: .
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 9001:9001
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Singapore
+      - DB_UAT_1_HOST=db
+      - DB_UAT_1_PORT=3306
+      - DB_UAT_1_NAME=test_schema
+      - DB_UAT_1_USERNAME=root
+      - DB_UAT_1_PASSWORD=example
+    command: "./waitforit http://db:3306/ -- /usr/bin/run.sh"
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_DATABASE=test_schema
+      - TZ=Asia/Singapore
+volumes:
+  esdata:
+    driver: local

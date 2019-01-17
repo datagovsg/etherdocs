@@ -401,6 +401,15 @@ exports.reloadSettings = function reloadSettings() {
     process.exit(1);
   }
 
+  settings.dbSettings = {
+    user: process.env.DB_UAT_1_USERNAME,
+    host: process.env.DB_UAT_1_HOST,
+    port: process.env.DB_UAT_1_PORT,
+    password: process.env.DB_UAT_1_PASSWORD,
+    database: process.env.DB_UAT_1_NAME,
+    charset: "utf8mb4"
+  };
+
   if (credentialsStr) {
     credentialsStr = jsonminify(credentialsStr)
       .replace(",]", "]")

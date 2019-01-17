@@ -37,10 +37,7 @@
    * Remember that since Etherpad 1.6.0 you can also store these informations in
    * credentials.json.
    */
-  "dbType": "dirty",
-  "dbSettings": {
-    "filename": "var/dirty.db"
-  },
+  "dbType": "mysql",
 
   /*
    * An Example of MySQL Configuration (commented out).
@@ -48,6 +45,7 @@
    * See: https://github.com/ether/etherpad-lite/wiki/How-to-use-Etherpad-Lite-with-MySQL
    */
 
+  // these settings are specified directly in the util/Settings.js file
   // "dbSettings": {
   //   "user": "process.env.DB_UAT_1_USERNAME",
   //   "host": "process.env.DB_UAT_1_HOST",
