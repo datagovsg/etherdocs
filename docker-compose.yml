@@ -3,6 +3,7 @@ services:
   etherdocs:
     build:
       context: .
+    user: "12345678:0"
     restart: always
     depends_on:
       - db
@@ -16,6 +17,7 @@ services:
       - DB_UAT_1_NAME=test_schema
       - DB_UAT_1_USERNAME=root
       - DB_UAT_1_PASSWORD=example
+
     command: "./waitforit http://db:3306/ -- /usr/bin/run.sh"
   db:
     image: mysql:5.7
