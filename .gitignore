@@ -1,4 +1,3 @@
-node_modules
 !settings.json.template
 APIKEY.txt
 SESSIONKEY.txt
