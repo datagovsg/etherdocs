@@ -1,0 +1,16 @@
+#ep_countable-popup td {
+    padding-right:5px;
+}
+#ep_countable-popup {
+    display:none;
+    position:absolute;
+    right:20px;
+    z-index:500;
+}
+#ep_countable-popup.selected{
+    display:block;
+    width: initial;
+}
+.buttonicon-gauge:before {
+    content: "\e82f";
+}

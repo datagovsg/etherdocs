@@ -1,0 +1,13 @@
+{
+  "parts": [
+    {
+      "name": "ep_user_font_size",
+      "client_hooks": {
+        "postAceInit": "ep_user_font_size/static/js/index:postAceInit"
+      },
+      "hooks": {
+        "eejsBlock_mySettings":"ep_user_font_size/eejs"
+      }
+    }
+  ]
+}

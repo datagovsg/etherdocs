@@ -1,0 +1,12 @@
+{
+  "parts": [
+  {
+    "name": "ep_author_hover",
+    "hooks" : {
+      "eejsBlock_mySettings": "ep_author_hover/index"
+    },
+    "client_hooks" : {
+      "postAceInit":"ep_author_hover/static/js/index"
+    }
+  }]
+}

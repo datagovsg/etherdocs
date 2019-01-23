@@ -1,0 +1,16 @@
+{
+    "parts": [
+        {
+            "name": "ep_countable",
+            "client_hooks": {
+                "handleClientMessage_ACCEPT_COMMIT": "ep_countable/static/js/index:handleMessage",
+                "handleClientMessage_NEW_CHANGES": "ep_countable/static/js/index:handleMessage"
+            },
+            "hooks": {
+                "eejsBlock_editbarMenuRight": "ep_countable/pad:eejsBlock_editbarMenuRight",
+                "eejsBlock_afterEditbar": "ep_countable/pad:eejsBlock_afterEditbar",
+                "eejsBlock_styles": "ep_countable/pad:eejsBlock_styles"
+            }
+        }
+    ]
+}

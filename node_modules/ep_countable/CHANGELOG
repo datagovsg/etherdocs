@@ -1,0 +1,24 @@
+Revision history for ep_countable
+
+0.0.7  2016-05-14
+    - Fix #5
+
+0.0.6  2016-05-12
+    - Fix #4
+
+0.0.5  2016-05-09
+    - Better popup width
+    - Add ":" to locales
+
+0.0.4  2016-05-06
+    - Add german translation thank to rugk
+
+0.0.3  2016-05-06
+    - Add polish translation thanks to Kamil Mówiński
+    - Fix strange bug of click event
+
+0.0.2 2015-07-26
+    - Count spaces as character in characters count
+
+0.0.1 2015-07-26
+    - Working
