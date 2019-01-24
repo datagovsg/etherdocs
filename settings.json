@@ -333,7 +333,7 @@
    *
    * Valid values: DEBUG, INFO, WARN, ERROR
    */
-  "loglevel": "DEBUG",
+  "loglevel": "INFO",
 
   /*
    * Logging configuration. See log4js documentation for further information:
