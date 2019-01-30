@@ -1,5 +1,5 @@
 FROM node:10.15.0-alpine
-RUN apk update && apk upgrade && apk add --no-cache git bash
+RUN apk update && apk upgrade && apk add --no-cache git bash libreoffice
 
 COPY bin usr/bin/
 COPY src usr/src/
