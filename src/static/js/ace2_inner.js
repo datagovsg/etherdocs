@@ -5241,10 +5241,14 @@ function Ace2Inner(){
     }
 
     //2-find the first line of the list
-    while(lineNum-1 >= 0 && (type=getLineListType(lineNum-1)))
+    while(lineNum-1 >= 0)
     {
-      type = /([a-z]+)[0-9]+/.exec(type);
+      const currLineType = /[a-z]+([0-9]+)/.exec(documentAttributeManager.getAttributeOnLine(lineNum-1, 'list'))
+      const lineNumbering = /[a-z]+([0-9]+)/.exec(type)
+      debugger
       if(type[1] == "indent")
+        break;
+      if (currLineType && currLineType[1] < lineNumbering[1])
         break;
       lineNum--;
     }
