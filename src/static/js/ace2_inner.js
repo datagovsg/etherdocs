@@ -5235,35 +5235,46 @@ function Ace2Inner(){
       return null;
     }
     type = /([a-z]+)[0-9]+/.exec(type);
-    if(type[1] == "indent")
+    if (type[1] == "indent")
     {
       return null;
     }
 
     //2-find the first line of the list
-    while(lineNum-1 >= 0 && (type=getLineListType(lineNum-1)))
-    {
-      type = /([a-z]+)[0-9]+/.exec(type);
-      if(type[1] == "indent")
+    // while(lineNum-1 >= 0 && (type=getLineListType(lineNum-1)))
+    // {
+    //   type = /([a-z]+)[0-9]+/.exec(type);
+    //   if(type[1] == "indent")
+    //     break;
+    //   lineNum--;
+    // }
+    var startLine = 0;
+    while (documentAttributeManager.getAttributesOnLine(startLine)) {
+      if (getLineListType(startLine)) {
         break;
-      lineNum--;
+      }
+      startLine++;
     }
 
     //3-renumber every list item of the same level from the beginning, level 1
     //IMPORTANT: never skip a level because there imbrication may be arbitrary
     var builder = Changeset.builder(rep.lines.totalWidth());
     var loc = [0,0];
-    function applyNumberList(line, level)
-    {
+    function applyNumberList(line, level){
       //init
       var position = 1;
       var curLevel = level;
       var listType;
       //loop over the lines
-      while(listType = getLineListType(line))
-      {
+      while (documentAttributeManager.getAttributesOnLine(line).length) {
+        while (
+          !getLineListType(line) &&
+          documentAttributeManager.getAttributesOnLine(line).length
+        ) {
+          line++;
+        }
         //apply new num
-        listType = /([a-z]+)([0-9]+)/.exec(listType);
+        listType = /([a-z]+)([0-9]+)/.exec(getLineListType(line));
         curLevel = Number(listType[2]);
         if(isNaN(curLevel) || listType[0] == "indent")
         {
@@ -5290,8 +5301,7 @@ function Ace2Inner(){
       }
       return line;
     }
-
-    applyNumberList(lineNum, 1);
+    applyNumberList(startLine, 1);
     var cs = builder.toString();
     if (!Changeset.isIdentity(cs))
     {
@@ -5299,8 +5309,6 @@ function Ace2Inner(){
     }
 
     //4-apply the modifications
-
-
   }
 
 
