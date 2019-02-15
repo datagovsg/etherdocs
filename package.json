@@ -19,6 +19,7 @@
     "ep_bookmark": "^1.0.2",
     "ep_comments_page": "^0.0.35",
     "ep_countable": "^0.0.7",
+    "ep_delete_empty_pads": "0.0.4",
     "ep_embed_floating_toolbar": "^0.0.3",
     "ep_font_color": "^0.0.11",
     "ep_font_family": "^0.2.7",
