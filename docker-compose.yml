@@ -3,7 +3,7 @@ services:
   etherdocs:
     build:
       context: .
-    # user: "12345678:0"
+    user: "12345678:0"
     restart: always
     depends_on:
       - db

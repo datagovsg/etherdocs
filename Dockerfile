@@ -6,9 +6,9 @@ COPY src usr/src/
 COPY var usr/var/
 COPY . usr/
 
-# RUN chmod -R g+rwx /usr
-# RUN mkdir /.npm
-# RUN chmod -R g+rwx /.npm
+RUN chmod -R g+rwx /usr
+RUN mkdir /.npm
+RUN chmod -R g+rwx /.npm
 
 WORKDIR /usr
 
