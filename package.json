@@ -28,6 +28,7 @@
     "ep_mypads": "^1.7.6",
     "ep_page_view": "^0.5.24",
     "ep_print": "^0.0.9",
+    "ep_push2delete": "^0.1.6",
     "ep_resize": "^0.0.6",
     "ep_spellcheck": "^0.0.3",
     "ep_sticky_attributes": "^0.1.0",
