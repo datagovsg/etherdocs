@@ -316,7 +316,7 @@
     "left": [
       // we're trying to mimic what Google Docs does
       ["undo", "redo"],
-      ["bold", "italic", "underline", "strikethrough"],
+      ["bold", "italic", "underline"],
       ["orderedlist", "unorderedlist", "outdent", "indent"],
       ["clearauthorship"]
     ],
