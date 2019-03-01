@@ -10,11 +10,25 @@
 
 ## Getting started
 
-`docker build -t ether . && docker run --user="12345678:0" -p 9001:9001 ether`
+`docker-compose up --build`
 
-and then go to http://0.0.0.0:9001
+give it a whole bunch of time and then go to http://0.0.0.0:9001. When you are building it for something and you want it to run quicker, comment out the following lines in the `Dockerfile`:
 
-I won't give instructions on how to start it on your machine because you're going to run into the problem stated above. If you are smart enough to solve that problem then you're smart enough to figure out how to run it on your local machine yourself.
+```bash
+# RUN chmod -R g+rwx /usr
+# RUN mkdir /.npm
+# RUN chmod -R g+rwx /.npm
+```
+
+and the following line from the `docker-compose.yml` file:
+
+```bash
+    # user: "12345678:0"
+```
+
+I apologize but hot reloading is not available. You will need to stop the entire thing and restart it. It's very inefficient, I realize that :(
+
+Those are included in here so that you are able to simulate the reduced permissions provided by Nectar when you are running your container
 
 To demo the product on the internet, use their implementation http://beta.etherpad.org. To demo the product on SOE, go to https://etherdocs.app.gov.sg. Don't forget the https! Especially when you're telling friends about it!
 
