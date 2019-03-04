@@ -71,7 +71,7 @@
   /*
    * The default text of a pad
    */
-  "defaultPadText": "Welcome to EtherDocs!\nIt's Google Docs for the Intranet. It is a proof of concept rather than a final product so accept our apologies if you find any shortcomings. We'd love to hear how we can improve the product from you. Please send your thoughts to one or all of these folks:\n- Ang Yi Xin ang_yi_xin@tech.gov.sg\n- Talitha Chin talitha_chin@tech.gov.sg\n- Nikhil Choudhary nikhil_choudhary@tech.gov.sg\n",
+  "defaultPadText": "Etherdocs: a real-time collboration tool. Brought to you by GovTech",
 
   /*
    * Default Pad behavior.
