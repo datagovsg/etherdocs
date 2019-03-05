@@ -26,6 +26,13 @@ defaultButtonAttributes = function (name, overrides) {
   };
 };
 
+newButtonAttributes = function (oldName, newName, overrides) {
+  return {
+    command: oldName,
+    class: "buttonicon-" + oldName + " bx bxs-" + newName + "-alt"
+  };
+};
+
 tag = function (name, attributes, contents) {
   var aStr = tagAttributes(attributes);
 
@@ -210,7 +217,7 @@ module.exports = {
 
     savedrevision: defaultButtonAttributes("savedRevision"),
     settings: defaultButtonAttributes("settings"),
-    embed: defaultButtonAttributes("embed"),
+    embed: newButtonAttributes("embed", "share"),
     showusers: defaultButtonAttributes("showusers"),
 
     timeslider_export: {
