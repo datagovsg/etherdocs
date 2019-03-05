@@ -71,7 +71,7 @@
   /*
    * The default text of a pad
    */
-  "defaultPadText": "Etherdocs: a real-time collboration tool. Brought to you by GovTech",
+  "defaultPadText": "Etherdocs: a real-time collaboration tool",
 
   /*
    * Default Pad behavior.
@@ -151,7 +151,7 @@
    * This will improve the loading performance massively, but makes it difficult
    * to debug the javascript/css
    */
-  "minify": true,
+  "minify": false,
 
   /*
    * How long may clients use served javascript code (in seconds)?

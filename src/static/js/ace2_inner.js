@@ -5250,7 +5250,7 @@ function Ace2Inner(){
     // }
     var startLine = 0;
     while (documentAttributeManager.getAttributesOnLine(startLine)) {
-      if (getLineListType(startLine)) {
+      if (getLineListType(startLine).indexOf("number") != -1) {
         break;
       }
       startLine++;
@@ -5268,13 +5268,16 @@ function Ace2Inner(){
       //loop over the lines
       while (documentAttributeManager.getAttributesOnLine(line).length) {
         while (
-          !getLineListType(line) &&
+          getLineListType(line).indexOf("number") === -1 &&
           documentAttributeManager.getAttributesOnLine(line).length
         ) {
           line++;
         }
         //apply new num
         listType = /([a-z]+)([0-9]+)/.exec(getLineListType(line));
+        if (!listType) {
+          return line;
+        }
         curLevel = Number(listType[2]);
         if(isNaN(curLevel) || listType[0] == "indent")
         {

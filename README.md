@@ -32,6 +32,11 @@ Those are included in here so that you are able to simulate the reduced permissi
 
 To demo the product on the internet, use their implementation http://beta.etherpad.org. To demo the product on SOE, go to https://etherdocs.app.gov.sg. Don't forget the https! Especially when you're telling friends about it!
 
+### How to debug
+
+- Switch off minification. That should help you understand what's going on better.
+- Type `debugger` into whatever javascript line you want Chrome to stop execution at. You won't need to waste time searching for it either, as an added bonus, since this is a huge codebase
+
 # Things you should know, from the original repository
 
 Understand [git](https://training.github.com/) and watch this [video on getting started with Etherpad Development](https://youtu.be/67-Q26YH97E).
