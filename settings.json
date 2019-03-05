@@ -71,7 +71,7 @@
   /*
    * The default text of a pad
    */
-  "defaultPadText": "Etherdocs: a real-time collboration tool. Brought to you by GovTech",
+  "defaultPadText": "Etherdocs: a real-time collaboration tool",
 
   /*
    * Default Pad behavior.
