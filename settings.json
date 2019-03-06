@@ -318,7 +318,6 @@
       ["undo", "redo"],
       ["bold", "italic", "underline"],
       ["orderedlist", "unorderedlist", "outdent", "indent"],
-      ["clearauthorship"]
     ],
     "right": [
       ["importexport", "timeslider", "savedrevision"],
