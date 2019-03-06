@@ -3,7 +3,7 @@ services:
   etherdocs:
     build:
       context: .
-    user: "12345678:0"
+    # user: "12345678:0"
     restart: always
     depends_on:
       - db
@@ -27,6 +27,3 @@ services:
       - MYSQL_ROOT_PASSWORD=example
       - MYSQL_DATABASE=test_schema
       - TZ=Asia/Singapore
-volumes:
-  esdata:
-    driver: local
