@@ -5249,7 +5249,7 @@ function Ace2Inner(){
     //   lineNum--;
     // }
     var startLine = 0;
-    while (documentAttributeManager.getAttributesOnLine(startLine)) {
+    while (documentAttributeManager.getAttributesOnLine(startLine).length) {
       if (getLineListType(startLine).indexOf("number") != -1) {
         break;
       }
