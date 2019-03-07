@@ -27,6 +27,3 @@ services:
       - MYSQL_ROOT_PASSWORD=example
       - MYSQL_DATABASE=test_schema
       - TZ=Asia/Singapore
-volumes:
-  esdata:
-    driver: local
