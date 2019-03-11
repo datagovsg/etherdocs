@@ -10,7 +10,7 @@
   /*
    * Name your instance!
    */
-  "title": "EtherDocs",
+  "title": "Notepad",
 
   /*
    * favicon default name
@@ -71,7 +71,7 @@
   /*
    * The default text of a pad
    */
-  "defaultPadText": "Etherdocs: a real-time collaboration tool",
+  "defaultPadText": "Share the document link with others to collaborate in real-time!",
 
   /*
    * Default Pad behavior.
