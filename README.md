@@ -1,5 +1,7 @@
 # Lightweight real-time collaborative editing on the Intranet!
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/datagovsg/etherdocs.svg)](https://greenkeeper.io/)
+
 The project has been archived. No further development work is being done on it
 
 ## The etherdocs journey
