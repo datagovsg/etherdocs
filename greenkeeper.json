@@ -1,0 +1,11 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "bin/doc/package.json",
+        "package.json",
+        "src/package.json"
+      ]
+    }
+  }
+}
